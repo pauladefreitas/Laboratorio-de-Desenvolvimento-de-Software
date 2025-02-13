@@ -1,0 +1,89 @@
+@startuml
+
+class Usuario {
+  #nome: String
+  #id: String
+  #senha: String
+  #logado: Boolean
+  +logar(senha: String): void
+  +deslogar(): void
+  +isLogado(): Boolean
+  +toString(): String
+
+}
+
+class Aluno {
+  -nome: String
+  -matricula: String
+  -curso: Curso
+  +toString(): String
+}
+
+class Professor {
+  -nome: String
+  -disciplina: Disciplina
+  +listarAlunosMatriculados(disciplina: Disciplina): List<Aluno>
+  +addDisciplinas(disciplina Disciplina): void
+  +toString(): String
+
+}
+
+class Disciplina {
+  -nome: String
+  -cargaHoraria: int
+  -alunos: List<Aluno>
+  -professor: Professor
+  -ativa: Boolean
+  +ativarDisciplina(): void
+  +desativarDisciplina(): void
+  +isAtiva(): Boolean
+  +isObrigatorio(): Boolean
+  +addAluno(aluno: Aluno): void
+  +removerAluno(aluno: Aluno): void
+  +periodoMatricular(): void
+  +toString(): String
+
+}
+
+class Curso {
+  -nome: String
+  -id: String
+  -numCreditos: int
+  -disciplinas: List<Disciplina>
+  +adicionarDisciplina(disciplina: Disciplina): void
+  +removerDisciplina(disciplina: Disciplina): void
+  +toString(): String
+
+}
+
+class SecretariaUniversidade {
+  -disciplinas: List<Disciplina>
+  -alunos: List<Aluno>
+  -professores: List<Professor>
+  +gerarCurriculo(): String
+}
+
+class Cobranca {
+  +notificarCobranca(aluno: Aluno, disciplina: Disciplina): void
+}
+
+class SistemaMatriculas {
+  -disciplina: List<Disciplina>
+  -cobranca: Cobranca
+  +matricularAluno(aluno: Aluno, disciplina: Disciplina): void
+  +cancelarMatricula(aluno: Aluno, disciplina: Disciplina): void
+  +finalizarPeriodoMatriculas(): void
+  -notificarSistemaCobrancas(aluno: Aluno, disciplina: Disciplina): void
+}
+
+Usuario <|-- Aluno
+Usuario <|-- Professor
+Aluno -- Disciplina 
+Disciplina --  Professor
+SistemaMatriculas -- Cobranca 
+SecretariaUniversidade -- Aluno
+SecretariaUniversidade -- Disciplina 
+SecretariaUniversidade -- Professor
+Curso o-- Disciplina
+
+@enduml
