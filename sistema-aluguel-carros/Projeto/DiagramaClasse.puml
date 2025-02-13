@@ -1,0 +1,74 @@
+@startuml
+class Cliente {
+    - RG: String
+    - CPF: String
+    - nome: String
+    - endereco: String
+    - profissao: String
+    - contratosAprovados: List<PedidoAluguel>
+    - empregadores: List<Empregador>
+    - rendimentos: List<Rendimento>
+    + introduzirPedido()
+    + consultarPedido(pedidoID: int)
+    + cancelarPedido(pedidoID: int)
+    + modificarPedido(pedidoID: int)
+}
+
+class Agente {
+    - agenteId: int
+    - nome: String
+    - tipoAgente: String
+    + avaliarPedido(pedidoId: int)
+    + modificarPedido(pedidoID: int)
+}
+
+class Empregador {
+    - userId: int
+    - nome: String
+}
+
+class Rendimento {
+    - userId: int
+    - valor: String
+    - descricao: String
+}
+
+class PedidoAluguel {
+    - pedidoId: int
+    - dataCriacao: Date
+    - status: String
+    - periodoContrato: int
+    - opcaoCompra: boolean
+    + isAprovado(): boolean
+}
+
+class Automovel {
+    - automovelId: int
+    - matricula: String
+    - ano: int
+    - marca: String
+    - modelo: String
+    - placa: String
+}
+
+class ContratoAluguel {
+    - contratoId: int
+    - dataInicio: Date
+    - dataFim: Date
+    - termos: String
+}
+
+class ContratoCredito {
+    - contratoCreditoId: int
+    - termos: String
+}
+
+Cliente -- PedidoAluguel
+Cliente -- Empregador
+Cliente -- Rendimento
+Agente -- PedidoAluguel
+ContratoAluguel -- Automovel
+PedidoAluguel -- ContratoAluguel
+ContratoAluguel -- ContratoCredito
+Agente -- ContratoCredito
+@enduml

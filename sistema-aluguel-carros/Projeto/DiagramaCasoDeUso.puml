@@ -1,0 +1,37 @@
+@startuml
+
+"Cliente" as c
+c <-right- (UC2)
+c <-- (UC5)
+c <-- (UC6)
+
+"Agente" as a
+a <-- (UC3)
+a <-left- (UC4)
+a <-down- (UC7)
+
+"Sistema" as s
+s --> (UC11)
+s --> (UC10)
+
+"Banco" as b 
+b --> (UC12)  
+
+"Cadastrar" as (UC1)
+"Cadastrar " as (UC8)
+
+c <-- (UC1) 
+a <-- (UC8)
+
+
+"Gerenciar pedidos" as (UC2)
+"Modificar pedidos" as (UC3)
+"Avaliar pedidos" as (UC4)
+"Gerenciar Dados dos Clientes" as (UC5)
+"Consultar Contratos e Veículos" as (UC6)
+"Analisar Pedido Financeiramente" as (UC7)
+"Armazenar Dados Veiculos" as (UC10)
+"Verificar tipo de contrato" as (UC11)
+"Atribuir contrato de credito" as (UC12)
+
+@enduml
