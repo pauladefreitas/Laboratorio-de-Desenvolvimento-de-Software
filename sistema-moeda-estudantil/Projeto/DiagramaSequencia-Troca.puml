@@ -1,0 +1,23 @@
+@startuml
+actor "Aluno" as aluno
+participant "Front-end Vantagens" as frontend
+participant "Backend Vantagens" as backend
+database "Banco de Dados" as db
+
+aluno -> frontend: Solicitar troca de vantagem
+frontend -> backend: Validar solicitação (dados da vantagem e saldo)
+backend -> db: Buscar saldo do aluno
+db --> backend: Retornar saldo do aluno
+backend -> db: Buscar disponibilidade da vantagem
+db --> backend: Retornar disponibilidade da vantagem
+
+alt Saldo suficiente e vantagem disponível
+    backend -> db: Atualizar saldo do aluno (subtrair custo)
+    backend -> db: Registrar transação de troca
+    backend --> frontend: Confirmar sucesso da troca
+    frontend --> aluno: Mensagem: "Troca realizada com sucesso"
+else Saldo insuficiente ou vantagem indisponível
+    backend --> frontend: Retornar erro (mensagem apropriada)
+    frontend --> aluno: Mensagem: "Erro: saldo insuficiente ou vantagem indisponível"
+end
+@enduml

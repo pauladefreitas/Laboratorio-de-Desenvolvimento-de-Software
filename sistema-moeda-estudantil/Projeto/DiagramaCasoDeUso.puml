@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor Usuário 
+actor Aluno
+actor Professor
+actor EmpresaParceira
+
+rectangle SistemaDeMerito {
+    Usuário <|-- Aluno
+    Usuário <|-- Professor
+
+    Usuário --> (Cadastrar)
+    Usuário --> (Consultar Extrato)
+
+    Aluno --> (Trocar Moedas)
+    Aluno --> (Receber Notificação)
+
+    Professor --> (Distribuir Moedas)
+
+    EmpresaParceira --> (Cadastrar Vantagem)
+
+    (Trocar Moedas) --> (Enviar Cupom)
+    (Enviar Cupom) --> Aluno
+    (Enviar Cupom) --> EmpresaParceira
+}
+
+@enduml

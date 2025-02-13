@@ -1,0 +1,76 @@
+@startuml
+entity "Aluno" as Aluno {
+    +ID : Long
+    +email : String
+    +RG : String
+    +endereco : String
+    +saldoMoedas : int
+    +curso : String
+}
+
+entity "Professor" as Professor {
+    +ID : Long
+    +departamento : String
+    +saldoMoedas : int
+}
+
+entity "InstituicaoEnsino" as InstituicaoEnsino {
+    +ID : Long
+    +nome : String
+}
+
+entity "Curso" as Curso {
+    +ID : Long
+    +nome : String
+}
+
+entity "Moeda" as Moeda {
+    +ID : Long
+    +quantidade : int
+    +dataDistribuicao : Date
+    +mensagemReconhecimento : String
+}
+
+entity "Transacao" as Transacao {
+    +ID : Long
+    +tipo : String
+    +quantidadeMoedas : int
+    +data : Date
+    +descricao : String
+}
+
+entity "Vantagem" as Vantagem {
+    +ID : Long
+    +nome : String
+    +descricao : String
+    +foto : String
+    +custoMoedas : int
+}
+
+entity "Empresa" as Empresa {
+    +ID : Long
+    +nome : String
+    +descricao : String
+}
+
+entity "Login" as Login {
+    +ID : Long
+    +usuario : String
+    +senha : String
+    +papel : String
+}
+
+Aluno "0..*" -- "1" Moeda : "Recebe"
+Professor "1" -- "0..*" Moeda : "Distribui"
+Aluno "1" -- "0..*" InstituicaoEnsino : "Está matriculado"
+Aluno "0..*" -- "1" Curso : "Faz parte de"
+Professor "1" -- "0..*" InstituicaoEnsino : "Trabalha em"
+Aluno "0..*" -- "0..*" Transacao : "Consulta"
+Professor "0..*" -- "0..*" Transacao : "Realiza"
+Aluno "0..*" -- "1" Vantagem : "Resgata"
+Vantagem "1..*" -- "1" Empresa : "Oferecida por"
+Login "1" -- "1" Aluno
+Login "1" -- "1" Professor
+Login "1" -- "1" Empresa
+
+@enduml

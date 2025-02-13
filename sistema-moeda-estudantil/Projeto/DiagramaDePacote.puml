@@ -1,0 +1,23 @@
+@startuml
+package "Sistema de Mérito" {
+    
+    package "Back-End" {
+        [Banco de Dados] 
+        [Serviço de Autenticação]
+        [Serviço de Notificação]
+        [Serviço de Moedas]
+        [Serviço de Vantagens]
+    }
+
+    [Interface do Usuário]
+
+    [Interface do Usuário] --> [Serviço de Autenticação] : login/logout
+    [Interface do Usuário] --> [Serviço de Notificação] : enviar notificação
+    [Interface do Usuário] --> [Serviço de Moedas] : gerenciar moedas
+    [Interface do Usuário] --> [Serviço de Vantagens] : gerenciar vantagens
+    [Interface do Usuário] --> [Banco de Dados] : CRUD de usuários e moedas
+    [Serviço de Autenticação] --> [Banco de Dados] : validação de login
+    [Serviço de Moedas] --> [Banco de Dados] : atualizar saldo de moedas
+    [Serviço de Vantagens] --> [Banco de Dados] : gerenciar vantagens
+}
+@enduml

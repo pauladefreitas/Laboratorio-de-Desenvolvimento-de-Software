@@ -1,0 +1,17 @@
+.listEstudante{
+    margin: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.divider{
+    margin: 0 50px;
+    border: 0.1px solid #ececec;
+}
+
+.tableContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}

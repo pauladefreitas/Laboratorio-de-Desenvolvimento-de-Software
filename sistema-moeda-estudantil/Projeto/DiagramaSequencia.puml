@@ -1,0 +1,21 @@
+@startuml
+actor "Empresa Parceira" as empresa
+actor "Aluno" as aluno
+participant "Front-end Vantagens" as frontend
+participant "Backend Vantagens" as backend
+database "Banco de Dados" as db
+
+empresa -> frontend: Enviar dados para cadastro
+frontend -> backend: Gravar dados da vantagem()
+backend -> db: Inserir dados da vantagem()
+db --> backend: Dados gravados com sucesso
+backend --> frontend: Confirmar sucesso do cadastro
+frontend --> empresa: Mensagem: "Vantagem cadastrada com sucesso"
+
+aluno -> frontend: Consultar vantagens()
+frontend -> backend: Solicitar dados das vantagens()
+backend -> db: Buscar dados das vantagens()
+db --> backend: Retornar dados das vantagens
+backend --> frontend: Enviar dados das vantagens
+frontend --> aluno: Exibir vantagens cadastradas
+@enduml

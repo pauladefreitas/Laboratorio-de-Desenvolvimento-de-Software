@@ -1,0 +1,19 @@
+@startuml
+!define RECTANGLE class
+
+node "Cliente (Navegador Web)" {
+  [Aluno]
+  [Professor]
+  [Empresa Parceira]
+}
+
+node "Servidor de Aplicação" {
+  [Sistema de Mérito Estudantil]
+}
+
+database "Banco de Dados"
+
+[Cliente (Navegador Web)] --> [Sistema de Mérito Estudantil]
+[Sistema de Mérito Estudantil] --> [Banco de Dados]
+
+@enduml
